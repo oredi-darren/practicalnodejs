@@ -26,6 +26,11 @@
 *.sql
 *.sqlite
 
+# Intellij IDEA #
+#################
+**/workspace.xml
+**/tasks.xml
+
 # OS generated files #
 ######################
 .DS_Store
@@ -36,8 +41,9 @@
 ehthumbs.db
 Thumbs.db
 
-/**/node_modules
+
+**/node_modules/
 
 # build directories
-/**/dest
-/**/build
+**/dest/
+**/build/
