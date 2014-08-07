@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="IdProvider" IDEtalkID="B03EE5EA66018487416155F03685DC43" />
   <component name="JsBowerSettings">
     <exe-path>$USER_HOME$/.nvm/v0.10.25/bin/bower</exe-path>
     <config-path />
