@@ -45,5 +45,5 @@ Thumbs.db
 **/node_modules/
 
 # build directories
-**/dest/
+**/dist/
 **/build/
