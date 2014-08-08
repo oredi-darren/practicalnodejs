@@ -1,0 +1,14 @@
+{
+    "src": "src",
+    "srcScripts": "src/scripts",
+    "srcData": "src/data",
+    "srcDataCollection": "src/data/collection",
+    "dist": "dist",
+    "distJs": "dist/js",
+    "distLib": "dist/lib",
+    "distData": "dist/data",
+    "distDataCollection": "dist/data/collection",
+    "specs": "specs",
+    "specsServer": "specsServer",
+    "nodeModules": "node_modules"
+}
