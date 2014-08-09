@@ -1,5 +1,5 @@
 {
-    "src": "../../src",
     "dist": "../../dist",
-    "distJs": "../../dist/js"
+    "distJs": "../../dist/js",
+    "dataCollection": "../../dist/data/collection"
 }

@@ -23,6 +23,7 @@
     "grunt-mongoimport": "^0.1.5",
     "matchdep": "^0.3.0",
     "mocha": "^1.21.4",
+    "promise": "^5.0.0",
     "superagent": "^0.18.2"
   },
   "scripts": {

@@ -75,5 +75,5 @@ module.exports = function (grunt) {
     });
 
     // Define the default task
-    grunt.registerTask('default', ['clean', 'copy', 'jshint', 'mochacli', 'mongoimport']);
+    grunt.registerTask('default', ['clean', 'copy', 'jshint', 'mochacli']);
 };
