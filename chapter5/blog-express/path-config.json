@@ -1,9 +1,11 @@
 {
     "src": "src",
+    "srcPublic": "src/public",
     "srcScripts": "src/scripts",
     "srcData": "src/data",
     "srcDataCollection": "src/data/collection",
     "dist": "dist",
+    "distPublic": "dist/public",
     "distJs": "dist/js",
     "distLib": "dist/lib",
     "distData": "dist/data",
