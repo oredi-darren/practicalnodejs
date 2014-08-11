@@ -34,10 +34,10 @@ describe('server', function () {
                     seedArticles.forEach(function (item, index, list) {
                         if(item.published) {
                             expect(res.text).to
-                                .contain('<h2><a href="/articles' + item.slug + '">' + item.title);
+                                .contain('<h2><a href="/articles/' + item.slug + '">' + item.title);
                         } else {
                             expect(res.text).not.to
-                                .contain('<h2><a href="/articles' + item.slug + '">' + item.title);
+                                .contain('<h2><a href="/articles/' + item.slug + '">' + item.title);
                         }
                     });
                     done();

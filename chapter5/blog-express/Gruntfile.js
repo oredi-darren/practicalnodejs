@@ -27,8 +27,8 @@ module.exports = function (grunt) {
                     {cwd: '<%= pathConfig.src %>', expand: true, src: ['**/*.jade'], dest: '<%= pathConfig.dist %>', filter: 'isFile'},
                     {cwd: '<%= pathConfig.srcScripts %>', expand: true, src: ['**/*.js'], dest: '<%= pathConfig.distJs %>', filter: 'isFile'},
                     {cwd: '<%= pathConfig.srcPublic %>', expand: true, src: ['**/*'], dest: '<%= pathConfig.distPublic %>', filter: 'isFile'},
-                    {cwd: '<%= pathConfig.nodeModules %>/jquery/dist/', expand: true, src: ['*.js'], dest: '<%= pathConfig.distLib %>/jquery/js', filter: 'isFile'},
-                    {cwd: '<%= pathConfig.nodeModules %>/bootstrap/dist/', expand: true, src: ['**/*'], dest: '<%= pathConfig.distLib %>/bootstrap', filter: 'isFile'},
+                    {cwd: '<%= pathConfig.nodeModules %>/jquery/dist/', expand: true, src: ['*'], dest: '<%= pathConfig.distPublicLib %>/jquery/js', filter: 'isFile'},
+                    {cwd: '<%= pathConfig.nodeModules %>/bootstrap/dist/', expand: true, src: ['**/*'], dest: '<%= pathConfig.distPublicLib %>/bootstrap', filter: 'isFile'},
                     {cwd: '<%= pathConfig.srcDataCollection %>', expand: true, src: ['**/*.json'], dest: '<%= pathConfig.distDataCollection %>', filter: 'isFile'}
                 ]
             }

@@ -42,7 +42,9 @@ app.use(function (req, res, next) {
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(methodOverride());
 app.use(require('stylus').middleware(path.join(basePath, 'public')));
 app.use(express.static(path.join(basePath, 'public')));
@@ -68,7 +70,7 @@ app.get('/articles/:slug', routes.article.show);
 app.get('/api/articles', routes.article.list);
 app.post('/api/articles', routes.article.add);
 app.put('/api/articles/:id', routes.article.edit);
-app.del('/api/articles/:id', routes.article.del);
+app.delete('/api/articles/:id', routes.article.del);
 
 app.all('*', function (req, res) {
     res.send(404);
