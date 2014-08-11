@@ -1,0 +1,31 @@
+html
+    head
+        title= appTitle
+        script(type="text/javascript", src="/lib/jquery/js/jquery.min.js")
+        link(rel="stylesheet", href="/lib/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/lib/bootstrap/css/bootstrap-theme.min.css")
+        script(type="text/javascript", src="/lib/bootstrap/js/bootstrap.min.js")
+        script(type="text/javascript", src="/js/blog.js")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    body
+        #wrap
+            .container
+                h1.page-header= appTitle
+                p.lead Welcome to example from Express.js Experience by&nbsp;
+                    a(href="http://twitter.com/demoapiseet") @demoapiseet
+                    |. Please enjoy.
+                block page
+                block header
+                    div
+                        include includes/menu
+                block alert
+                    div.alert.alert-warning.hidden
+                .content
+                    block content
+            block footer
+                footer
+                    .container
+                        p
+                            | Copyright &copy; 2014 | Issues? Submit to&nbsp;
+                            a(href="https://github.com/oredi/practicalnodejs/issues") GitHub
+                            | .

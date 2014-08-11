@@ -1,0 +1,5 @@
+{
+    "dist": "../../dist",
+    "distJs": "../../dist/js",
+    "dataCollection": "../../dist/data/collection"
+}
