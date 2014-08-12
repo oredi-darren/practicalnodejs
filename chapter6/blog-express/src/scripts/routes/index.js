@@ -6,6 +6,7 @@ var article = require('./article')
 
 module.exports = function(app, passport) {
     app.get('/', function (req, res, next){
+        console.log(req.collections.articles);
         req.collections.articles.find({published: true}, {sort: {_id:-1}}).toArray(function(error, articles){
             if (error) return next(error);
             res.render('index', { articles: articles});
@@ -14,6 +15,12 @@ module.exports = function(app, passport) {
     app.get('/login', user.login);
     app.post('/login', user.authenticate);
     app.get('/logout', user.logout);
+    app.get('/signup', user.signup);
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect: '/admin',
+        failureRedirect: '/signup',
+        failureFlash: true
+    }));
     app.get('/admin', article.admin);
     app.get('/post', article.post);
     app.post('/post', article.postArticle);

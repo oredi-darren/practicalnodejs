@@ -28,3 +28,8 @@ exports.logout = function (req, res) {
 exports.authenticate = function (req, res, next) {
     res.redirect('/');
 }
+
+exports.signup = function (req, res) {
+    // render the page and pass in any flash data if it exists
+    res.render('signup', { message: req.flash('signupMessage') });
+};

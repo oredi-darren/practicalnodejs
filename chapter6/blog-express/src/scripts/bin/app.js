@@ -6,7 +6,8 @@
 var express = require('express')
     , http = require('http')
     , path = require('path')
-    , mongoskin = require('mongoskin')
+    , bcrypt   = require('bcrypt-nodejs')
+    , mongoose = require('mongoose')
     , session = require('express-session')
     , logger = require('morgan')
     , errorHandler = require('errorhandler')
@@ -18,20 +19,22 @@ var express = require('express')
 
 var basePath = path.resolve(__dirname, "../../");
 
+
 // Create express server and configure settings
 var app = express();
 app.locals.appTitle = 'blog-express';
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(basePath, 'views'));
 app.set('view engine', 'jade');
-
 // Connect to database
 var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog'
-    , db = mongoskin.db(dbUrl, { safe: true })
+    , db = mongoose.createConnection(dbUrl)
     , collections = {
-        articles: db.collection('articles')
-        , users: db.collection('users')
+        articles: Article.find({})
+        , users: User.find({})
     };
+var User = require('../models/user')(mongoose, bcrypt);
+var Article = require('../models/Article')(mongoose);
 
 // Define middleware
 app.use(function (req, res, next) {
@@ -52,8 +55,12 @@ app.use(require('stylus').middleware(path.join(basePath, 'public')));
 app.use(express.static(path.join(basePath, 'public')));
 app.use(cookieParser('3CCC4ACD-6ED1-4844-9217-82131BDCB239'));
 app.use(session({
-    secret: '2C4474A-D649-4D44-9535-46E296EF984F'
+    secret: '2C4474A-D649-4D44-9535-46E296EF984F',
+    saveUninitialized: true,
+    resave: true
 }));
+
+require('../config/passport')(passport, mongoose);
 app.use(passport.initialize());
 app.use(passport.session());    // persistent login sessions
 app.use(flash());

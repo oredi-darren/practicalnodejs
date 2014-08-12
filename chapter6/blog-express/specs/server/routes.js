@@ -1,6 +1,8 @@
 /**
  * Created by darren on 8/7/14.
  */
+process.env.PORT = 3001;
+
 var path = require('path')
     , pathConfig = require('./path-config.json')
     , appPath = path.join(pathConfig.distJs,'bin/app')

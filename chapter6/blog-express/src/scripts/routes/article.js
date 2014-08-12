@@ -9,7 +9,7 @@ exports.show = function (req, res, next) {
         slug: req.params.slug
     }, function (error, article) {
         if(error) return next(error);
-        if(!article.published) return res.send(401);
+        if(!article.published) return res.status(401).end();
         res.render('article', article);
     });
 };

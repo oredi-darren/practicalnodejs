@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 
         // Configure a grunt-mocha-test task
         mochacli: {
-            test: {
+            all: {
                 options: {
                     reporter: '<%= mochacliConfig.reporter %>',
                     ui: '<%= mochacliConfig.ui %>',
@@ -74,6 +74,7 @@ module.exports = function (grunt) {
             }
         }
     });
+
 
     // Define the default task
     grunt.registerTask('default', ['clean', 'copy', 'jshint', 'mochacli']);
