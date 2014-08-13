@@ -26,7 +26,22 @@ module.exports = function(User) {
             /*
              * POST authenticate route
              */
-            res.redirect('/');
+            if(!req.body.email || !req.body.password)
+                return res.render('login', {
+                    error: 'Please enter your email and password.'
+                });
+
+            User.findOne({
+                email: req.body.email
+            }, function (error, user) {
+                if(error) return next(error);
+                if(!user || !user.validPassword(req.body.password)) {
+                    res.render('login', { error: 'Incorrect email & password combination.' });
+                }
+                else {
+                    res.redirect('/');
+                }
+            });
         }
         , signup: function (req, res) {
             // render the page and pass in any flash data if it exists
