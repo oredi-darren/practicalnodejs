@@ -18,8 +18,6 @@ var express = require('express')
     , passport = require('passport');
 
 var basePath = path.resolve(__dirname, "../../");
-
-
 // Create express server and configure settings
 var app = express();
 app.locals.appTitle = 'blog-express';
@@ -27,24 +25,12 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(basePath, 'views'));
 app.set('view engine', 'jade');
 // Connect to database
-var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog'
-    , db = mongoose.createConnection(dbUrl)
-    , collections = {
-        articles: Article.find({})
-        , users: User.find({})
-    };
+var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog';
+mongoose.connect(dbUrl);
 var User = require('../models/user')(mongoose, bcrypt);
 var Article = require('../models/Article')(mongoose);
 
 // Define middleware
-app.use(function (req, res, next) {
-    if(!collections.articles || !collections.users)
-        return next(new Error('No collections.'));
-
-    req.collections = collections;
-    return next();
-});
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -60,19 +46,33 @@ app.use(session({
     resave: true
 }));
 
-require('../config/passport')(passport, mongoose);
+require('../config/passport')(passport, User);
 app.use(passport.initialize());
 app.use(passport.session());    // persistent login sessions
 app.use(flash());
-
-
-// Define routes
 if('development' == app.get('env')) {
     app.use(errorHandler());
 }
 
+// Define routes
 // PAGES & ROUTES
-require('../routes')(app, passport);
+app.use(function (req, res, next) {
+    if(req.session && req.session.admin)
+        res.local.admin = true;
+
+    next();
+});
+
+var authorize = function (req, res, next) {
+    if(!req.session || !req.session.admin)
+        return res.send(401);
+
+    return next();
+
+
+};
+
+require('../routes')(app, passport, authorize, Article, User);
 
 // Start server
 var server = http.createServer(app);

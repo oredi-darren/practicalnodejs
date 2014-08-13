@@ -1,16 +1,15 @@
 /**
  * Created by darren on 8/11/14.
  */
-var article = require('./article')
-    , user = require('./user');
+module.exports = function(app, passport, authorize, Article, User) {
+    var article = require('./article')(Article)
+        , user = require('./user')(User);
 
-module.exports = function(app, passport) {
     app.get('/', function (req, res, next){
-        console.log(req.collections.articles);
-        req.collections.articles.find({published: true}, {sort: {_id:-1}}).toArray(function(error, articles){
+        Article.find({published: true}, null, {sort: {_id: -1}}, function(error, articles){
             if (error) return next(error);
             res.render('index', { articles: articles});
-        })
+        });
     });
     app.get('/login', user.login);
     app.post('/login', user.authenticate);
@@ -21,12 +20,13 @@ module.exports = function(app, passport) {
         failureRedirect: '/signup',
         failureFlash: true
     }));
-    app.get('/admin', article.admin);
-    app.get('/post', article.post);
-    app.post('/post', article.postArticle);
+    app.get('/admin', authorize, article.admin);
+    app.get('/post', authorize, article.post);
+    app.post('/post', authorize, article.postArticle);
     app.get('/articles/:slug', article.show);
 
     // REST API ROUTES
+    app.all('/api', authorize);
     app.get('/api/articles', article.list);
     app.post('/api/articles', article.add);
     app.put('/api/articles/:id', article.edit);

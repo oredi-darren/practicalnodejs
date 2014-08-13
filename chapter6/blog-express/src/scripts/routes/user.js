@@ -4,32 +4,33 @@
 /*
 * GET users listing.
  */
-exports.list = function (req, res) {
-    res.send('respond with a resource');
-};
+module.exports = function(User) {
+    return {
+        list: function (req, res) {
+            res.send('respond with a resource');
+        }
+        , login: function (req, res) {
+            /*
+             * GET login page.
+             */
+            res.render('login');
+        }
+        , logout: function (req, res) {
+            /*
+             * GET logout route.
+             */
 
-/*
- * GET login page.
- */
-exports.login = function (req, res) {
-    res.render('login');
-};
-
-/*
- * GET logout route.
- */
-exports.logout = function (req, res) {
-    res.redirect('/');
-};
-
-/*
- * POST authenticate route
- */
-exports.authenticate = function (req, res, next) {
-    res.redirect('/');
-}
-
-exports.signup = function (req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('signup', { message: req.flash('signupMessage') });
+            res.redirect('/');
+        }
+        , authenticate: function (req, res, next) {
+            /*
+             * POST authenticate route
+             */
+            res.redirect('/');
+        }
+        , signup: function (req, res) {
+            // render the page and pass in any flash data if it exists
+            res.render('signup', { message: req.flash('signupMessage') });
+        }
+    };
 };

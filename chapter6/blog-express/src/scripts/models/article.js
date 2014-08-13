@@ -10,5 +10,5 @@ module.exports = function (mongoose) {
         text: String
     });
 
-    mongoose.model('Article', articleSchema);
+    return mongoose.model('Article', articleSchema);
 };
