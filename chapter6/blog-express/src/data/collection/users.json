@@ -1,5 +1,9 @@
-[{
-    "email": "hi@azat.co",
-    "admin": true,
-    "password": "1"
-}]
+[
+    {
+        "local": {
+            "email": "darren@seet.me",
+            "admin": true,
+            "password": "$2a$08$qwTe7JkMayzNm0BAaqdSqeceIQMh2kslexkkCP/ewCeaNcKiqg5f6"
+        }
+    }
+]

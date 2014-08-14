@@ -12,14 +12,19 @@ module.exports = function(app, passport, authorize, Article, User) {
         });
     });
     app.get('/login', user.login);
-    app.post('/login', user.authenticate);
+    app.post('/login'
+        , passport.authenticate('local-login', {
+                successRedirect: '/admin',
+                failureRedirect: '/login',
+                failureFlash: true }));
     app.get('/logout', user.logout);
     app.get('/signup', user.signup);
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/admin',
-        failureRedirect: '/signup',
-        failureFlash: true
+        successRedirect : '/', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
     }));
+
     app.get('/admin', authorize, article.admin);
     app.get('/post', authorize, article.post);
     app.post('/post', authorize, article.postArticle);

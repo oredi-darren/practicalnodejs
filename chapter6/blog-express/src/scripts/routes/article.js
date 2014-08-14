@@ -16,7 +16,7 @@ module.exports = function(Article) {
             });
         }
         , list: function (req, res, next) {
-            Article.find({}).toArray(function (error, articles) {
+            Article.find({}, function (error, articles) {
                 if(error) return next(error);
                 res.send({
                     articles: articles
@@ -81,9 +81,7 @@ module.exports = function(Article) {
             });
         }
         , admin: function (req, res, next) {
-            Article.find({}, {
-                sort: { _id: -1 }
-            }).toArray(function (error, articles) {
+            Article.find({}, null, { sort: { _id: -1 }}, function (error, articles) {
                 if(error) return next(error);
                 res.render('admin', { articles: articles });
             });

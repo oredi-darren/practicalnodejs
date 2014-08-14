@@ -49,6 +49,7 @@ app.use(session({
 require('../config/passport')(passport, User);
 app.use(passport.initialize());
 app.use(passport.session());    // persistent login sessions
+
 app.use(flash());
 if('development' == app.get('env')) {
     app.use(errorHandler());
@@ -56,20 +57,20 @@ if('development' == app.get('env')) {
 
 // Define routes
 // PAGES & ROUTES
+/*
 app.use(function (req, res, next) {
     if(req.session && req.session.admin)
         res.local.admin = true;
 
     next();
 });
+*/
 
 var authorize = function (req, res, next) {
-    if(!req.session || !req.session.admin)
-        return res.send(401);
-
+    console.log(req.user);
+    if(!req.user || !req.user.local || !req.user.local.admin)
+        return res.send(401).end();
     return next();
-
-
 };
 
 require('../routes')(app, passport, authorize, Article, User);
