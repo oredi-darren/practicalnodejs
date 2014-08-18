@@ -38,7 +38,7 @@ module.exports = function(app, passport, authorize, Article, User) {
     app.delete('/api/articles/:id', article.del);
 
     app.all('*', function (req, res) {
-        res.send(404);
+        res.send(404).end();
     });
 }
 

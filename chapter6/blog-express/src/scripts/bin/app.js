@@ -67,7 +67,6 @@ app.use(function (req, res, next) {
 */
 
 var authorize = function (req, res, next) {
-    console.log(req.user);
     if(!req.user || !req.user.local || !req.user.local.admin)
         return res.send(401).end();
     return next();
