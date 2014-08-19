@@ -3,10 +3,16 @@
  */
 module.exports = function (mongoose, bcrypt) {
     var userSchema = mongoose.Schema({
-        local: {
+        admin: Boolean
+        , local: {
             email: String,
-            admin: Boolean,
             password: String
+        }
+        , twitter: {
+            id: String,
+            token: String,
+            displayName: String,
+            username: String
         }
     });
 

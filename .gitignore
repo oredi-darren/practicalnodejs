@@ -47,3 +47,6 @@ Thumbs.db
 # build directories
 **/dist/
 **/build/
+
+# password related
+**/src/scripts/config/twitter.json
