@@ -14,7 +14,7 @@ db.bind('messages', {
                 console.error(error);
                 process.exit(1);
             }
-            console.log('Before Update: ', item);
+            console.log('Before Update: ', item
             var id = item._id.toString();   // we can store ID in a string
             item.updated = new Date().toJSON();;
             dbConnection.collection('messages').save(item, function (error, count) {
