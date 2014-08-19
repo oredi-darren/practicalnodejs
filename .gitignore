@@ -1,4 +1,4 @@
-# Compiled source #
+ompiled source #
 ###################
 *.com
 *.class
@@ -30,8 +30,7 @@
 #################
 **/workspace.xml
 **/tasks.xml
-
-# OS generated files #
+OS generated files #
 ######################
 .DS_Store
 .DS_Store?
@@ -48,5 +47,3 @@ Thumbs.db
 **/dist/
 **/build/
 
-# password related
-**/src/scripts/config/twitter.json
