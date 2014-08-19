@@ -2,15 +2,17 @@
     ul.nav.nav-pills
         li(class=(menu === 'index') ? 'active' : '')
             a(href='/') Home
-    if(admin)
-        li(class=(menu === 'post') ? 'active' : '')
-            a(href='/post') Post
-        li(class=(menu === 'admin') ? 'active' : '')
-            a(href='/admin') Admin
-        li(class=(menu === 'logout') ? 'active' : '')
-            a(href='/admin') Log out
-    else
-        li(class=(menu === 'login') ? 'active' : '')
-            a(href='/login') Log in
-        li
-            a(href='/auth/twitter') Sign in with Twitter
+        if(admin)
+            li(class=(menu === 'post') ? 'active' : '')
+                a(href='/post') Post
+            li(class=(menu === 'admin') ? 'active' : '')
+                a(href='/admin') Admin
+            li(class=(menu === 'logout') ? 'active' : '')
+                a(href='/logout') Log out
+        else
+            li(class=(menu === 'signup') ? 'active' : '')
+                a(href='/signup') Sign up
+            li(class=(menu === 'login') ? 'active' : '')
+                a(href='/login') Log in
+            li
+                a(href='/auth/twitter') Sign in with Twitter
