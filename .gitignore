@@ -26,7 +26,7 @@
 *.sql
 *.sqlite
 
-# Intellij IDEA #
+# Intellij IDEA #git
 #################
 **/workspace.xml
 **/tasks.xml
