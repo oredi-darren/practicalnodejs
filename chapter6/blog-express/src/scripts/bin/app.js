@@ -27,8 +27,8 @@ app.set('view engine', 'jade');
 // Connect to database
 var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog';
 mongoose.connect(dbUrl);
-var User = require('../models/user')(mongoose, bcrypt);
-var Article = require('../models/article')(mongoose);
+
+var models = require('../models')(mongoose, bcrypt);
 
 // Define middleware
 app.use(logger('dev'));
@@ -46,7 +46,7 @@ app.use(session({
     resave: true
 }));
 
-require('../config/passport')(passport, User);
+require('../config/passport')(passport, models.User);
 app.use(passport.initialize());
 app.use(passport.session());    // persistent login sessions
 
@@ -63,13 +63,20 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(function (req, res, next) {
+    if(!models.Article || !models.User)
+        return next(new Error('No models.'));
+
+    return next();
+});
+
 var authorize = function (req, res, next) {
     if(!req.user || !req.user.admin)
         return res.status(401).end();
     return next();
 };
 
-require('../routes')(app, passport, authorize, Article, User);
+require('../routes')(app, passport, authorize, models);
 
 // Start server
 var server = http.createServer(app);

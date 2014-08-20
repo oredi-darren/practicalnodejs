@@ -1,12 +1,12 @@
 /**
  * Created by darren on 8/11/14.
  */
-module.exports = function(app, passport, authorize, Article, User) {
-    var article = require('./article')(Article)
-        , user = require('./user')(User);
+module.exports = function(app, passport, authorize, models) {
+    var article = require('./article')(models.Article)
+        , user = require('./user')(models.User);
 
     app.get('/', function (req, res, next){
-        Article.find({published: true}, null, {sort: {_id: -1}}, function(error, articles){
+        models.Article.find({published: true}, null, {sort: {_id: -1}}, function(error, articles){
             if (error) return next(error);
             res.render('index', { articles: articles});
         });

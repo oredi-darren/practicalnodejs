@@ -3,9 +3,23 @@
  */
 module.exports = function (mongoose, bcrypt) {
     var userSchema = mongoose.Schema({
-        admin: Boolean
+        admin: {
+            type: Boolean,
+            default: false
+        }
         , local: {
-            email: String,
+            email: {
+                type: String,
+                required: true,
+                set: function (value) {
+                    return value.trim().toLowerCase();
+                },
+                validate: [
+                    function(email) {
+                        return (email.match(/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i) != null);
+                    }, 'Invalid email'
+                ]
+            },
             password: String
         }
         , twitter: {
