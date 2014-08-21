@@ -21,7 +21,7 @@ describe('express rest api server', function () {
             .end(function (e, res) {
                 expect(e).to.eql(null)
                 expect(typeof res.body).to.eql('object')
-                expect(res.body[0]._id.length).to.eql(24)
+                expect(res.body._id.length).to.eql(24)
                 expect(res.body._id).to.eql(id)
                 done()
             })
