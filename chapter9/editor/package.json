@@ -1,0 +1,26 @@
+{
+  "name": "editor",
+  "version": "0.0.1",
+  "description": "Online collaborative code editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "editor",
+    "node",
+    "derby",
+    "realtime"
+  ],
+  "author": "Darren Seet",
+  "license": "BSD",
+  "dependencies": {
+    "compression": "^1.0.11",
+    "derby": "^0.6.0-alpha24",
+    "express": "^4.8.5",
+    "livedb-mongo": "^0.4.1",
+    "racer-browserchannel": "^0.3.0",
+    "redis": "^0.12.1",
+    "serve-favicon": "^2.0.1"
+  }
+}
