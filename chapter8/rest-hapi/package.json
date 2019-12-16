@@ -13,7 +13,7 @@
   "license": "BSD",
   "dependencies": {
     "good": "^2.2.3",
-    "hapi": "^6.5.1",
+    "hapi": "^18.1.0",
     "mongoskin": "^1.4.4"
   },
   "devDependencies": {
