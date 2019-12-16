@@ -11,7 +11,7 @@
     "express": "^4.8.1",
     "express-session": "^1.7.4",
     "jade": "^1.5.0",
-    "jquery": "^2.1.1",
+    "jquery": "^3.4.1",
     "method-override": "^2.1.2",
     "mongoskin": "^1.4.4",
     "morgan": "^1.2.2",
